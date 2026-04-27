@@ -29,6 +29,12 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
+# 健康检查接口
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
+
 # 主页：返回前端聊天页面
 @app.get("/", response_class=HTMLResponse)
 async def index():
